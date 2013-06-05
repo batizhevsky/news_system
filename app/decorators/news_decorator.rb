@@ -6,6 +6,6 @@ class NewsDecorator < Draper::Decorator
   end
 
   def get_rating
-    votes.count || 0 
+    votes.count || 0
   end
 end

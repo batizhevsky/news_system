@@ -1,3 +1,4 @@
+# encoding: utf-8
 class NewsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show, :vote]
   before_filter :current_user_author, only: [:edit, :update, :destroy]
@@ -33,7 +34,7 @@ class NewsController < ApplicationController
 
   def update
     if @news.update_attributes(params[:news])
-      redirect_to @news, notice: "Успешно обновлено"
+      redirect_to @news, notice: 'Успешно обновлено'
     else
       render :edit
     end
@@ -46,19 +47,20 @@ class NewsController < ApplicationController
 
   def vote
     @news = News.find(params[:id]).decorate
-    
+
     if session[:session_id] && @news.increase_rating!(session[:session_id])
       respond_to do |format|
-        format.html { redirect_to @news, notice: "Успешно проголосовали" }
+        format.html { redirect_to @news, notice: 'Успешно проголосовали' }
         format.js {}
       end
     else
-      flash[:error] = "Вы уже голосовали" 
+      flash[:error] = 'Вы уже голосовали'
       redirect_to @news
     end
   end
 
   private
+
   def current_user_author
     @news = current_user.news.where(id: params[:id]).first
     redirect_to root_url if @news.nil?

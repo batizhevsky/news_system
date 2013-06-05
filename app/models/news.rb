@@ -7,7 +7,7 @@ class News < ActiveRecord::Base
   validates :title, presence: true
   validates :body, presence: true
 
-  scope :sorted_for_main, -> { order("votes_count DESC, created_at DESC") }
+  scope :sorted_for_main, -> { order('votes_count DESC, created_at DESC') }
 
   def increase_rating!(session)
     if user_vote?(session)
