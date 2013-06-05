@@ -1,0 +1,16 @@
+%h1= @news.title
+
+%p= @news.body
+
+%p
+  Автор:
+  = @news.author_email
+%p
+  Рейтинг:
+  %span.rating= @news.get_rating
+.vote
+  = button_to_vote_news(params[:id])
+-if current_user == @news.user
+  .edit
+    = link_to "Редактировать", edit_news_path(params[:id])
+    = button_to "Удалить", news_path(params[:id]), method: :delete, confirm: true, class: "btn btn-link"

@@ -1,0 +1,13 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Название
+      %th Рейтинг
+      %th Дата добавления
+  %tbody
+    - @all_news.each do |news|
+      %tr
+        %td= link_to(news.title, news_path(news))
+        %td= news.get_rating
+        %td= news.created_at
+    
