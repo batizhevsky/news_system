@@ -1,4 +1,4 @@
 class Vote < ActiveRecord::Base
   belongs_to :news, counter_cache: true
-  attr_accessible :user_session
+  attr_accessible :user_session, :news_id
 end

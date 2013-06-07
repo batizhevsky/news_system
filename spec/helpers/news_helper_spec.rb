@@ -11,5 +11,9 @@ require 'spec_helper'
 #   end
 # end
 describe NewsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "button_to_vote_news" do
+    @news = FactoryGirl.create :news
+    @news.should_receive(:user_vote?)
+    helper.button_to_vote_news(1)
+  end
 end
